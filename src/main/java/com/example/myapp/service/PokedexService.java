@@ -2,6 +2,7 @@ package com.example.myapp.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.core.io.ClassPathResource;
@@ -27,10 +28,16 @@ public class PokedexService {
     return this.pokedexBase.getVersion();
   }
 
-  public MegaEvolution[] megaEvolutions() {
+  public List<Pokedex> getPokedex() {
+    return this.pokedexBase.getPokedex();
+  }
+
+  public List<MegaEvolution[]> megaEvolutions() {
     List<Pokedex> pokedexList = pokedexBase.getPokedex();
-    Pokedex pokedex = pokedexList.get(5);
-    MegaEvolution[] megaEvolution = pokedex.getMegaEvolution();
-    return megaEvolution;
+    List<MegaEvolution[]> megaEvolutionList = new ArrayList<>();
+    for(Pokedex pokedex : pokedexList) {
+      megaEvolutionList.add(pokedex.getMegaEvolution());
+    }
+    return megaEvolutionList;
   }
 }
