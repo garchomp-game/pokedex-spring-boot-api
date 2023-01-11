@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 
-// import com.example.myapp.factory.JsonPropertySourceFactory;
-import com.example.myapp.repository.PropertyInterface;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -17,9 +15,8 @@ import lombok.Getter;
 @JsonIgnoreProperties(ignoreUnknown=true)
 @PropertySource(
 value = "classpath:pokedex/pokedex/pokedex.json"
-// factory = JsonPropertySourceFactory.class
 )
-public class PokedexBase implements PropertyInterface {
+public class PokedexBase {
   private String version;
 
   private int update;

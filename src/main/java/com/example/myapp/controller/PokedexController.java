@@ -27,7 +27,6 @@ public class PokedexController {
     File pokedexJsonBase = new ClassPathResource("pokedex/pokedex/pokedex.json")
     .getFile();
     ObjectMapper mapper = new ObjectMapper();
-    // mapper.addMixIn(PropertyInterface.class, PropertyMixin.class);
     this.map = mapper.readValue(pokedexJsonBase, PokedexBase.class);
   }
 

@@ -1,11 +1,10 @@
 package com.example.myapp.property;
 
-import com.example.myapp.repository.PropertyInterface;
 
 import lombok.Getter;
 
 @Getter
-public class PokemonNameList implements PropertyInterface {
+public class PokemonNameList {
   private String jpn;
   private String eng;
   private String ger;
