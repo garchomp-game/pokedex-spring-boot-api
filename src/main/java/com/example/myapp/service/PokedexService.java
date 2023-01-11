@@ -3,19 +3,29 @@ package com.example.myapp.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+import com.example.myapp.property.GigantaMax;
 import com.example.myapp.property.MegaEvolution;
 import com.example.myapp.property.Pokedex;
 import com.example.myapp.property.PokedexBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * PokedexService
+ */
 @Component
 public class PokedexService {
+
+  /**
+   * jsonをモデルとして使えるようにするため
+   * コンストラクタで準備をする。
+   */
   private PokedexBase pokedexBase;
   public PokedexService() throws IOException {
 
@@ -25,14 +35,34 @@ public class PokedexService {
     this.pokedexBase = mapper.readValue(pokedexJsonBase, PokedexBase.class);
   }
 
-  public String getVersion() {
-    return this.pokedexBase.getVersion();
+  /**
+   * pokedexのインフォメーションを表示。
+   */
+  public LinkedHashMap<String, String> getInfomation() {
+    LinkedHashMap<String, String> infomation = new LinkedHashMap<>();
+    infomation.put("version", this.pokedexBase.getVersion());
+    infomation.put("update", String.valueOf(this.pokedexBase.getUpdate()));
+    return infomation;
   }
 
+  /**
+   * 全件取得
+   */
+  public PokedexBase getAll() {
+    return this.pokedexBase;
+  }
+
+
+  /**
+   * pokedexの部分のみ取得
+   */
   public List<Pokedex> getPokedex() {
     return this.pokedexBase.getPokedex();
   }
 
+  /**
+   * メガシンカの部分のみ取得
+   */
   public List<MegaEvolution[]> megaEvolutions() {
     List<Pokedex> pokedexList = pokedexBase.getPokedex();
     List<MegaEvolution[]> megaEvolutionList = new ArrayList<>();
@@ -44,5 +74,20 @@ public class PokedexService {
       });
     }
     return megaEvolutionList;
+  }
+
+  /**
+   * キョダイマックスのみ取得
+   */
+  public List<GigantaMax[]> gigantaMaxs() {
+    List<Pokedex> pokedexs = pokedexBase.getPokedex();
+    List<GigantaMax[]> gigantaMaxList = new ArrayList<>();
+    for(Pokedex pokedex : pokedexs) {
+      Optional<GigantaMax[]> gigantaMaxs = Optional.ofNullable(pokedex.getGigantamax());
+      gigantaMaxs.ifPresent(val -> {
+        gigantaMaxList.add(val);
+      });
+    }
+    return gigantaMaxList;
   }
 }
