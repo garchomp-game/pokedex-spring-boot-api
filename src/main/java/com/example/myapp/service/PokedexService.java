@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -36,7 +37,11 @@ public class PokedexService {
     List<Pokedex> pokedexList = pokedexBase.getPokedex();
     List<MegaEvolution[]> megaEvolutionList = new ArrayList<>();
     for(Pokedex pokedex : pokedexList) {
-      megaEvolutionList.add(pokedex.getMegaEvolution());
+      Optional<MegaEvolution[]> megaEvolutions = Optional
+      .ofNullable(pokedex.getMegaEvolution());
+      megaEvolutions.ifPresent(val -> {
+        megaEvolutionList.add(val);
+      });
     }
     return megaEvolutionList;
   }

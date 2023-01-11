@@ -24,5 +24,4 @@ public class Pokedex {
   private MegaEvolution[] megaEvolution;
 
   private GigantaMax[] gigantamax;
-
 }
