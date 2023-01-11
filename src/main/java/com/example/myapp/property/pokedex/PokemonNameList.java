@@ -1,4 +1,4 @@
-package com.example.myapp.property;
+package com.example.myapp.property.pokedex;
 
 
 import lombok.Getter;

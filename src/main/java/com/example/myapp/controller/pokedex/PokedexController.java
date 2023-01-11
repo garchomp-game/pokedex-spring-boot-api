@@ -1,4 +1,4 @@
-package com.example.myapp.controller;
+package com.example.myapp.controller.pokedex;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myapp.property.GigantaMax;
-import com.example.myapp.property.MegaEvolution;
-import com.example.myapp.property.Pokedex;
-import com.example.myapp.property.PokedexBase;
-import com.example.myapp.service.PokedexService;
+import com.example.myapp.property.pokedex.GigantaMax;
+import com.example.myapp.property.pokedex.MegaEvolution;
+import com.example.myapp.property.pokedex.Pokedex;
+import com.example.myapp.property.pokedex.PokedexBase;
+import com.example.myapp.service.pokedex.PokedexService;
 
 import lombok.RequiredArgsConstructor;
 

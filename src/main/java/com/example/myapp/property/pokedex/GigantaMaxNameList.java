@@ -1,9 +1,9 @@
-package com.example.myapp.property;
+package com.example.myapp.property.pokedex;
 
 import lombok.Getter;
 
 @Getter
-public class MegaEvolutionNameList {
+public class GigantaMaxNameList {
   private String jpn;
   private String eng;
 }

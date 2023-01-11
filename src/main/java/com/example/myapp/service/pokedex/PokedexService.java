@@ -1,4 +1,4 @@
-package com.example.myapp.service;
+package com.example.myapp.service.pokedex;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +10,10 @@ import java.util.Optional;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import com.example.myapp.property.GigantaMax;
-import com.example.myapp.property.MegaEvolution;
-import com.example.myapp.property.Pokedex;
-import com.example.myapp.property.PokedexBase;
+import com.example.myapp.property.pokedex.GigantaMax;
+import com.example.myapp.property.pokedex.MegaEvolution;
+import com.example.myapp.property.pokedex.Pokedex;
+import com.example.myapp.property.pokedex.PokedexBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
