@@ -23,9 +23,9 @@ public class Pokedex implements PropertyInterface {
 
   private double weight;
 
-  // @JsonProperty("mega_evolution")
-  // private MegaEvolution megaEvolution;
-  // 
-  // private GigantaMax gigantamax;
+  @JsonProperty("mega_evolution")
+  private MegaEvolution[] megaEvolution;
+
+  private GigantaMax[] gigantamax;
 
 }
