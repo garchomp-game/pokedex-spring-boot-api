@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.core.io.ClassPathResource;
@@ -66,9 +67,11 @@ public class PokedexService {
   public List<MegaEvolution[]> megaEvolutions() {
     List<Pokedex> pokedexList = pokedexBase.getPokedex();
     List<MegaEvolution[]> megaEvolutionList = new ArrayList<>();
+
     for(Pokedex pokedex : pokedexList) {
       Optional<MegaEvolution[]> megaEvolutions = Optional
       .ofNullable(pokedex.getMegaEvolution());
+
       megaEvolutions.ifPresent(val -> {
         megaEvolutionList.add(val);
       });
@@ -79,14 +82,14 @@ public class PokedexService {
   /**
    * キョダイマックスのみ取得
    */
-  public List<GigantaMax[]> gigantaMaxs() {
+  public LinkedHashMap<String, GigantaMax[]> gigantaMaxs() {
     List<Pokedex> pokedexs = pokedexBase.getPokedex();
-    List<GigantaMax[]> gigantaMaxList = new ArrayList<>();
+    LinkedHashMap<String, GigantaMax[]> gigantaMaxList = new LinkedHashMap<>();
+
     for(Pokedex pokedex : pokedexs) {
-      Optional<GigantaMax[]> gigantaMaxs = Optional.ofNullable(pokedex.getGigantamax());
-      gigantaMaxs.ifPresent(val -> {
-        gigantaMaxList.add(val);
-      });
+      if (pokedex.getGigantamax() != null) {
+        gigantaMaxList.put(String.valueOf(pokedex.getId()), pokedex.getGigantamax());
+      }
     }
     return gigantaMaxList;
   }
