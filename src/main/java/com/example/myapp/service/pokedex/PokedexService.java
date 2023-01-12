@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.core.io.ClassPathResource;
@@ -39,11 +38,11 @@ public class PokedexService {
   /**
    * pokedexのインフォメーションを表示。
    */
-  public LinkedHashMap<String, String> getInfomation() {
-    LinkedHashMap<String, String> infomation = new LinkedHashMap<>();
-    infomation.put("version", this.pokedexBase.getVersion());
-    infomation.put("update", String.valueOf(this.pokedexBase.getUpdate()));
-    return infomation;
+  public LinkedHashMap<String, String> getinformation() {
+    LinkedHashMap<String, String> information = new LinkedHashMap<>();
+    information.put("version", this.pokedexBase.getVersion());
+    information.put("update", String.valueOf(this.pokedexBase.getUpdate()));
+    return information;
   }
 
   /**

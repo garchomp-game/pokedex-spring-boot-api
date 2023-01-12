@@ -29,8 +29,8 @@ public class PokedexController {
 
   @GetMapping("/info")
   @ResponseBody
-  public LinkedHashMap<String, String> getInfomation() {
-    return service.getInfomation();
+  public LinkedHashMap<String, String> getinformation() {
+    return service.getinformation();
   }
 
   @GetMapping("/all")
