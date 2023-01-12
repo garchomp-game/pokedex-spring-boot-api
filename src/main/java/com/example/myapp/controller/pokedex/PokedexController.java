@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import com.example.myapp.property.pokedex.GigantaMax;
 import com.example.myapp.property.pokedex.MegaEvolution;
 import com.example.myapp.property.pokedex.Pokedex;
 import com.example.myapp.property.pokedex.PokedexBase;
+import com.example.myapp.property.pokedex.status.Status;
 import com.example.myapp.service.pokedex.PokedexService;
 
 import lombok.RequiredArgsConstructor;
@@ -55,5 +57,11 @@ public class PokedexController {
   @ResponseBody
   public HashMap<String, GigantaMax[]> gigantaMaxs() {
     return service.gigantaMaxs();
+  }
+
+  @GetMapping("/{globalNo}/status")
+  @ResponseBody
+  public Status[] findStatusByGlobalNumber(@PathVariable int globalNo) {
+    return service.findStatusByGlobalNumber(globalNo);
   }
 }

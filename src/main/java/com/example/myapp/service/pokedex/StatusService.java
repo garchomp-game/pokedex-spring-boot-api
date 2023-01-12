@@ -2,15 +2,21 @@ package com.example.myapp.service.pokedex;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+import com.example.myapp.property.pokedex.status.PokemonStatus;
+import com.example.myapp.property.pokedex.status.Status;
 import com.example.myapp.property.pokedex.status.StatusBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class StatusService {
   private StatusBase statusBase;
 
@@ -23,9 +29,28 @@ public class StatusService {
     return information;
   }
 
-  public StatusBase findAll(String generation) {
+  public StatusBase getStatus(String generation) {
     this.makeMapper(generation);
     return statusBase;
+  }
+
+  public LinkedHashMap<String, PokemonStatus[]> findAll(String generation) {
+    this.makeMapper(generation);
+    return this.statusBase.getPokedex();
+  }
+  
+  public Status[] getPokemonStatusList(String generation) {
+    this.makeMapper(generation);
+    Collection<PokemonStatus[]> statusList = this.statusBase
+    .getPokedex().values();
+    Status[] pokemonStatusList = null;
+    for(PokemonStatus[] pokemonStatus : statusList) {
+      for(PokemonStatus status : pokemonStatus) {
+        pokemonStatusList = status.getStatus();
+        return pokemonStatusList;
+      }
+    }
+    return pokemonStatusList;
   }
 
   private void makeMapper(String generation) {

@@ -1,7 +1,6 @@
 package com.example.myapp.property.pokedex.status;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -22,5 +21,5 @@ public class StatusBase {
   @JsonProperty("game_version")
   private String gameVersion;
 
-  private LinkedHashMap<String, List<Pokedex>> pokedex;
+  private LinkedHashMap<String, PokemonStatus[]> pokedex;
 }

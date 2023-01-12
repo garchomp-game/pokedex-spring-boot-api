@@ -14,7 +14,10 @@ import com.example.myapp.property.pokedex.GigantaMax;
 import com.example.myapp.property.pokedex.MegaEvolution;
 import com.example.myapp.property.pokedex.Pokedex;
 import com.example.myapp.property.pokedex.PokedexBase;
+import com.example.myapp.property.pokedex.status.PokemonStatus;
+import com.example.myapp.property.pokedex.status.Status;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * PokedexService
@@ -22,17 +25,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class PokedexService {
 
+  private StatusService statusService;
+  private final ConvertService convertService;
   /**
    * jsonをモデルとして使えるようにするため
    * コンストラクタで準備をする。
    */
   private PokedexBase pokedexBase;
-  public PokedexService() throws IOException {
-
+  public PokedexService(
+    StatusService statusService,
+    ConvertService convertService
+  ) throws IOException {
     File pokedexJsonBase = new ClassPathResource("pokedex/pokedex/pokedex.json")
     .getFile();
     ObjectMapper mapper = new ObjectMapper();
     this.pokedexBase = mapper.readValue(pokedexJsonBase, PokedexBase.class);
+    this.statusService = statusService;
+    this.convertService = convertService;
   }
 
   /**
@@ -91,5 +100,10 @@ public class PokedexService {
       }
     }
     return gigantaMaxList;
+  }
+
+  public Status[] findStatusByGlobalNumber(int globalNo) {
+    String table = this.convertService.getTable(globalNo);
+    return this.statusService.getPokemonStatusList(table);
   }
 }

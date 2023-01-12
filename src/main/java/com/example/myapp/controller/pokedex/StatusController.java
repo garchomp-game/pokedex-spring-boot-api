@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.myapp.property.pokedex.status.PokemonStatus;
 import com.example.myapp.property.pokedex.status.StatusBase;
 import com.example.myapp.service.pokedex.*;
 
@@ -27,7 +28,12 @@ public class StatusController {
 
   @GetMapping("/")
   @ResponseBody
-  public StatusBase findAll(@PathVariable String generation) {
+  public StatusBase getStatus(@PathVariable String generation) {
+    return service.getStatus(generation);
+  }
+  @GetMapping("/all")
+  @ResponseBody
+  public LinkedHashMap<String, PokemonStatus[]> all(@PathVariable String generation) {
     return service.findAll(generation);
   }
 }
