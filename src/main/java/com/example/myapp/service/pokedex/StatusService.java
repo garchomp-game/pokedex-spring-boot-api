@@ -39,18 +39,14 @@ public class StatusService {
     return this.statusBase.getPokedex();
   }
   
-  public Status[] getPokemonStatusList(String generation) {
+  public Collection<PokemonStatus[]> getPokemonStatusList(
+    String generation,
+    int globalNo
+  ) {
     this.makeMapper(generation);
     Collection<PokemonStatus[]> statusList = this.statusBase
     .getPokedex().values();
-    Status[] pokemonStatusList = null;
-    for(PokemonStatus[] pokemonStatus : statusList) {
-      for(PokemonStatus status : pokemonStatus) {
-        pokemonStatusList = status.getStatus();
-        return pokemonStatusList;
-      }
-    }
-    return pokemonStatusList;
+    return statusList;
   }
 
   private void makeMapper(String generation) {

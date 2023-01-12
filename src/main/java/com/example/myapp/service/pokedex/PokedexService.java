@@ -3,6 +3,7 @@ package com.example.myapp.service.pokedex;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
@@ -104,6 +105,17 @@ public class PokedexService {
 
   public Status[] findStatusByGlobalNumber(int globalNo) {
     String table = this.convertService.getTable(globalNo);
-    return this.statusService.getPokemonStatusList(table);
+    Collection<PokemonStatus[]> statusList = this
+    .statusService.getPokemonStatusList(table, globalNo);
+    Status[] pokemonStatusList = null;
+    for(PokemonStatus[] pokemonStatus : statusList) {
+      for(PokemonStatus status : pokemonStatus) {
+        if (status.getGlobalNo() == globalNo) {
+          pokemonStatusList = status.getStatus();
+          return pokemonStatusList;
+        }
+      }
+    }
+    return pokemonStatusList;
   }
 }
