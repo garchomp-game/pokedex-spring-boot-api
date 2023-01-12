@@ -11,21 +11,32 @@ import com.example.myapp.property.pokedex.status.StatusBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-public class RedGreenBlueYellowService {
+public class StatusService {
   private StatusBase statusBase;
-  public RedGreenBlueYellowService() throws IOException {
-    String path = "pokedex/pokedex/Red_Green_Blue_Yellow/Red_Green_Blue_Yellow.json";
-    File statusJsonBase = new ClassPathResource(path)
-    .getFile();
-    ObjectMapper mapper = new ObjectMapper();
-    this.statusBase = mapper.readValue(statusJsonBase, StatusBase.class);
-  }
 
-  public LinkedHashMap<String, String> getinformation() {
+  public LinkedHashMap<String, String> getinformation(String generation) {
+    this.makeMapper(generation);  
     LinkedHashMap<String, String> information = new LinkedHashMap<>();
     information.put("version", this.statusBase.getVersion());
     information.put("update", String.valueOf(this.statusBase.getUpdate()));
     information.put("game_version", String.valueOf(this.statusBase.getGameVersion()));
     return information;
+  }
+
+  public StatusBase findAll(String generation) {
+    this.makeMapper(generation);
+    return statusBase;
+  }
+
+  private void makeMapper(String generation) {
+    try {
+      String path = "pokedex/pokedex/" + generation + "/" + generation + ".json";
+      File statusJsonBase = new ClassPathResource(path)
+      .getFile();
+      ObjectMapper mapper = new ObjectMapper();
+      this.statusBase = mapper.readValue(statusJsonBase, StatusBase.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

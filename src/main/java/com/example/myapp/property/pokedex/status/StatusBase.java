@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -13,7 +13,7 @@ import lombok.Getter;
 
 @Getter
 @ConfigurationProperties
-@JsonIgnoreProperties(ignoreUnknown=true)
+// @JsonIgnoreProperties(ignoreUnknown=true)
 public class StatusBase {
   private String version;
 
