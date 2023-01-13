@@ -1,7 +1,7 @@
 package com.example.myapp.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedHashMap;
 
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +24,7 @@ public class ItemService {
       sb.append("static/pokedex/item/");
       sb.append(item.toString());
       sb.append(".json");
-      File itemJson = new ClassPathResource(sb.toString()).getFile();
+      InputStream itemJson = new ClassPathResource(sb.toString()).getInputStream();
       ObjectMapper mapper = new ObjectMapper();
       this.items.put(item.toString(), mapper.readValue(itemJson, Item.class));
     }

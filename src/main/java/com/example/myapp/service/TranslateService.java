@@ -1,7 +1,7 @@
 package com.example.myapp.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class TranslateService {
   private TransLateBase transLateBase;
   public TranslateService() throws IOException {
-    File translateJson = new ClassPathResource("pokedex/translate/translate.json")
-    .getFile();
+    InputStream translateJson = new ClassPathResource("pokedex/translate/translate.json")
+    .getInputStream();
     ObjectMapper mapper = new ObjectMapper();
     this.transLateBase = mapper.readValue(translateJson, TransLateBase.class);
   }

@@ -1,7 +1,7 @@
 package com.example.myapp.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -29,8 +29,8 @@ public class StatusService {
         path.append("/");
         path.append(val.toString());
         path.append(".json");
-        File statusJsonBase = new ClassPathResource(path.toString())
-        .getFile();
+        InputStream statusJsonBase = new ClassPathResource(path.toString())
+        .getInputStream();
         ObjectMapper mapper = new ObjectMapper();
       this.statusBase.put(
           val.toString(),

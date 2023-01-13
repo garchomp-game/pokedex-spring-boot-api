@@ -1,7 +1,7 @@
 package com.example.myapp.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -37,8 +37,8 @@ public class PokedexService {
     StatusService statusService,
     ConvertService convertService
   ) throws IOException {
-    File pokedexJsonBase = new ClassPathResource("pokedex/pokedex/pokedex.json")
-    .getFile();
+    InputStream pokedexJsonBase = new ClassPathResource("pokedex/pokedex/pokedex.json")
+    .getInputStream();
     ObjectMapper mapper = new ObjectMapper();
     this.pokedexBase = mapper.readValue(pokedexJsonBase, PokedexBase.class);
     this.statusService = statusService;

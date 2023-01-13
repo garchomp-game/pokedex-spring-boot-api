@@ -1,7 +1,7 @@
 package com.example.myapp.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -19,10 +19,10 @@ public class TypeService {
   private ListBase listBase;
 
   public TypeService() throws IOException {
-    File typeJson = new ClassPathResource("pokedex/type/type.json")
-    .getFile();
-    File listJson = new ClassPathResource("pokedex/type/list.json")
-    .getFile();
+    InputStream typeJson = new ClassPathResource("pokedex/type/type.json")
+    .getInputStream();
+    InputStream listJson = new ClassPathResource("pokedex/type/list.json")
+    .getInputStream();
     ObjectMapper mapper = new ObjectMapper();
     this.typeBase = mapper.readValue(typeJson, TypeBase.class);
     this.listBase = mapper.readValue(listJson, ListBase.class);

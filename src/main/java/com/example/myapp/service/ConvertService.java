@@ -1,7 +1,7 @@
 package com.example.myapp.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import org.springframework.core.io.ClassPathResource;
@@ -17,8 +17,8 @@ public class ConvertService {
 
   public ConvertService() throws IOException {
     String jsonPath = "pokedex/convert/local_global_id_converter.json";
-    File convertJson = new ClassPathResource(jsonPath)
-    .getFile();
+    InputStream convertJson = new ClassPathResource(jsonPath)
+    .getInputStream();
     ObjectMapper mapper = new ObjectMapper();
     this.convert = mapper.readValue(convertJson, Convert.class);
   }
