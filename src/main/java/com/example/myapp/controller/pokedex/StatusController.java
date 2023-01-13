@@ -14,24 +14,24 @@ import com.example.myapp.service.*;
 
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/pokedex/{generation}")
+@RequestMapping("/status")
 @RestController
 @RequiredArgsConstructor
 public class StatusController {
   private final StatusService service;
 
-  @GetMapping("/info")
+  @GetMapping("/info/{generation}")
   @ResponseBody
   public LinkedHashMap<String, String> getinformation(@PathVariable String generation) {
     return service.getinformation(generation);
   }
 
-  @GetMapping("/")
+  @GetMapping("/all/{generation}")
   @ResponseBody
   public StatusBase getStatus(@PathVariable String generation) {
     return service.getStatus(generation);
   }
-  @GetMapping("/all")
+  @GetMapping("/allContent/{generation}")
   @ResponseBody
   public LinkedHashMap<String, PokemonStatus[]> all(@PathVariable String generation) {
     return service.findAll(generation);

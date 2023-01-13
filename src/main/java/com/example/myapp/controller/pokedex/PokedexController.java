@@ -59,7 +59,7 @@ public class PokedexController {
     return service.gigantaMaxs();
   }
 
-  @GetMapping("/{globalNo}/status")
+  @GetMapping("/status/{globalNo}")
   @ResponseBody
   public Status[] findStatusByGlobalNumber(@PathVariable int globalNo) {
     return service.findStatusByGlobalNumber(globalNo);
