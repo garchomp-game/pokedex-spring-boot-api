@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/pokedex")
 @RestController
 @RequiredArgsConstructor
+@ComponentScan("com.example.myapp.property.pokedex")
+@ComponentScan("com.example.myapp.service")
 @PropertySource(
 value = "classpath:pokedex/pokedex/pokedex.json"
 )
