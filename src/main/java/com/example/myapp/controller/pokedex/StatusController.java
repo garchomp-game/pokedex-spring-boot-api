@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.property.pokedex.status.PokemonStatus;
 import com.example.myapp.property.pokedex.status.StatusBase;
-import com.example.myapp.service.pokedex.*;
+import com.example.myapp.service.*;
 
 import lombok.RequiredArgsConstructor;
 

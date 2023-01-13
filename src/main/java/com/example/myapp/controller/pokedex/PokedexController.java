@@ -16,7 +16,7 @@ import com.example.myapp.property.pokedex.MegaEvolution;
 import com.example.myapp.property.pokedex.Pokedex;
 import com.example.myapp.property.pokedex.PokedexBase;
 import com.example.myapp.property.pokedex.status.Status;
-import com.example.myapp.service.pokedex.PokedexService;
+import com.example.myapp.service.PokedexService;
 
 import lombok.RequiredArgsConstructor;
 

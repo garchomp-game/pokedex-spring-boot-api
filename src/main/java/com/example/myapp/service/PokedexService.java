@@ -1,4 +1,4 @@
-package com.example.myapp.service.pokedex;
+package com.example.myapp.service;
 
 import java.io.File;
 import java.io.IOException;
