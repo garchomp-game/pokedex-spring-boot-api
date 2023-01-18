@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.myapp.property.translate.Translate;
 import com.example.myapp.service.TranslateService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/translate")
@@ -22,12 +23,14 @@ import lombok.RequiredArgsConstructor;
 public class TranslateController {
   private final TranslateService service;
 
+  @Operation(summary = "日本語/英語変換ファイルの更新情報")
   @GetMapping("/info")
   @ResponseBody
   public LinkedHashMap<String, String> getInfo() {
     return service.getInfo();
   }
   
+  @Operation(summary = "日本語/英語変換ファイルの中身")
   @GetMapping("/translate_list")
   @ResponseBody
   public List<Translate> getTranslate() {
