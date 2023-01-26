@@ -2,7 +2,6 @@ package com.example.myapp.controller.pokedex;
 
 import java.util.LinkedHashMap;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/status")
 @RestController
 @RequiredArgsConstructor
-@ComponentScan("com.example.myapp.property.pokedex.status")
-@ComponentScan("com.example.myapp.service")
 public class StatusController {
   private final StatusService service;
 

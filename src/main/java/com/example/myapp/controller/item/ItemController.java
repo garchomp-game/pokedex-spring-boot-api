@@ -1,7 +1,6 @@
 package com.example.myapp.controller.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/item")
-@ComponentScan("com.example.myapp.property.item")
-@ComponentScan("com.example.myapp.service")
 public class ItemController {
   @Autowired
   private final ItemService service;

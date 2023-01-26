@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,6 @@ import com.example.myapp.ui.ItemFiles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-@ComponentScan("com.example.myapp.property.item")
 public class ItemService {
   private LinkedHashMap<String, Item> items;
 

@@ -3,7 +3,6 @@ package com.example.myapp.controller.translate;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,8 +17,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/translate")
 @RestController
 @RequiredArgsConstructor
-@ComponentScan("com.example.myapp.property.translate")
-@ComponentScan("com.example.myapp.service")
 public class TranslateController {
   private final TranslateService service;
 
