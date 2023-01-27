@@ -13,17 +13,22 @@ import com.example.myapp.property.type.TypeBase;
 import com.example.myapp.property.type.TypeList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Getter;
+
 @Component
+@Getter
 public class TypeService {
   private TypeBase typeBase;
   private ListBase listBase;
 
   public TypeService() throws IOException {
-    InputStream typeJson = new ClassPathResource("pokedex/type/type.json")
-    .getInputStream();
-    InputStream listJson = new ClassPathResource("pokedex/type/list.json")
-    .getInputStream();
     ObjectMapper mapper = new ObjectMapper();
+    String typePath = "static/pokedex/type/type.json";
+    String listPath = "static/pokedex/type/list.json";
+    InputStream typeJson = new ClassPathResource(typePath)
+    .getInputStream();
+    InputStream listJson = new ClassPathResource(listPath)
+    .getInputStream();
     this.typeBase = mapper.readValue(typeJson, TypeBase.class);
     this.listBase = mapper.readValue(listJson, ListBase.class);
   }

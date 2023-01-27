@@ -12,13 +12,18 @@ import com.example.myapp.property.translate.TransLateBase;
 import com.example.myapp.property.translate.Translate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Getter;
+
 @Component
+@Getter
 public class TranslateService {
   private TransLateBase transLateBase;
+
   public TranslateService() throws IOException {
-    InputStream translateJson = new ClassPathResource("pokedex/translate/translate.json")
-    .getInputStream();
     ObjectMapper mapper = new ObjectMapper();
+    String path = "static/pokedex/translate/translate.json";
+    InputStream translateJson = new ClassPathResource(path)
+    .getInputStream();
     this.transLateBase = mapper.readValue(translateJson, TransLateBase.class);
   }
 

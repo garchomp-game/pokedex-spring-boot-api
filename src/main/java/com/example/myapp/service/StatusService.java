@@ -15,7 +15,10 @@ import com.example.myapp.property.pokedex.status.StatusBase;
 import com.example.myapp.ui.StatusJsonFiles;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Getter;
+
 @Component
+@Getter
 public class StatusService {
   private Map<String, StatusBase> statusBase;
 
@@ -24,15 +27,15 @@ public class StatusService {
       this.statusBase = new HashMap<>();
       for(StatusJsonFiles val : StatusJsonFiles.values()) {
         StringBuilder path = new StringBuilder();
-        path.append("pokedex/pokedex/");
+        path.append("static/pokedex/pokedex/");
         path.append(val.toString());
         path.append("/");
         path.append(val.toString());
         path.append(".json");
+        ObjectMapper mapper = new ObjectMapper();
         InputStream statusJsonBase = new ClassPathResource(path.toString())
         .getInputStream();
-        ObjectMapper mapper = new ObjectMapper();
-      this.statusBase.put(
+        this.statusBase.put(
           val.toString(),
           mapper.readValue(statusJsonBase, StatusBase.class)
         );
@@ -60,7 +63,7 @@ public class StatusService {
     StatusBase statusBase = this.getStatusBase(generation);
     return statusBase.getPokedex();
   }
-  
+
   public Collection<PokemonStatus[]> getPokemonStatusList(
     String generation,
     int globalNo

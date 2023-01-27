@@ -19,11 +19,15 @@ import com.example.myapp.property.pokedex.status.PokemonStatus;
 import com.example.myapp.property.pokedex.status.Status;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Getter;
+
+
 
 /**
  * PokedexService
  */
 @Component
+@Getter
 public class PokedexService {
 
   private StatusService statusService;
@@ -37,13 +41,15 @@ public class PokedexService {
     StatusService statusService,
     ConvertService convertService
   ) throws IOException {
-    InputStream pokedexJsonBase = new ClassPathResource("pokedex/pokedex/pokedex.json")
-    .getInputStream();
-    ObjectMapper mapper = new ObjectMapper();
-    this.pokedexBase = mapper.readValue(pokedexJsonBase, PokedexBase.class);
-    this.statusService = statusService;
-    this.convertService = convertService;
-  }
+      ObjectMapper mapper = new ObjectMapper();
+      String path = "static/pokedex/pokedex/pokedex.json";
+        InputStream pokedexJsonBase;
+        pokedexJsonBase = new ClassPathResource(path)
+        .getInputStream();
+        this.pokedexBase = mapper.readValue(pokedexJsonBase, PokedexBase.class);
+      this.statusService = statusService;
+      this.convertService = convertService;
+    }
 
   /**
    * pokedexのインフォメーションを表示。

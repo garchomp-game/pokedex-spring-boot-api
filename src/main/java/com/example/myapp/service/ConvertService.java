@@ -13,16 +13,23 @@ import com.example.myapp.property.convert.Convert;
 import com.example.myapp.property.convert.ConverterItem;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Component
-public class ConvertService {
-  private final Convert convert;
+import lombok.Getter;
 
-  public ConvertService() throws IOException {
-    String jsonPath = "pokedex/convert/local_global_id_converter.json";
-    InputStream convertJson = new ClassPathResource(jsonPath)
-    .getInputStream();
-    ObjectMapper mapper = new ObjectMapper();
-    this.convert = mapper.readValue(convertJson, Convert.class);
+@Component
+@Getter
+public class ConvertService {
+  private Convert convert;
+
+  public ConvertService() {
+    try {
+      String jsonPath = "static/pokedex/convert/local_global_id_converter.json";
+      ObjectMapper mapper = new ObjectMapper();
+      InputStream convertJson = new ClassPathResource(jsonPath)
+      .getInputStream();
+      this.convert = mapper.readValue(convertJson, Convert.class);
+    } catch(IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public String getTable(int globalNo) {
